@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .main{
+            background-image: url("mole.gif");
+            width: 100%;
+            height: 100vh;
+            background-position: center;
+            background-size: cover;
+        }
+
+        table {
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            margin-top: 20px;
+        }
+
+        .mole1 {
+           
+            margin: 5px;
+            border: 1px solid black;
+             
+        }
+
+        table tr td img {
+            height: auto;
+            width: 100%;
+            visibility: hidden;
+            
+           
+        }
+
+        .btn {
+            text-align: center;
+
+        }
+
+        .btn button {
+            padding: 15px 30px;
+            margin-top: 10px;
+            margin-right: 5px;
+            min-width: 30px;
+            background-color: transparent;
+        }
+        #score1{
+            margin-top: 10px;
+            padding: 13px 30px;
+            border: 1px solid black;
+            margin-right: 5px;
+        }
+        #hscore1{
+            margin-top: 10px;
+            padding: 13px 10px;
+            border: 1px solid black;
+        }
+       
+    </style>
+</head>
+
+<body>
+    <div class="main">
+    <div style="display:flex; justify-content: center; ">
+    <div class="btn">
+        <button onclick="myfun()">START</button>
+    </div>
+    <div id="score1"> Score:<span id="score"></span></div>
+    <div id="score1"> Chances:<span id="chance"></span></div>
+    <div id="hscore1"> Highest Score:<span id="hscore"></span></div>
+</div>
+   
+
+    <table>
+        <tr>
+            <td>
+                <div class="mole1"><img src="mole1.gif" alt="" class="mole2" onclick="mycount()"></div>
+            </td>
+            <td>
+                <div class="mole1"><img src="mole1.gif" alt="" class="mole2"  onclick="mycount()"></div>
+            </td>
+            <td>
+                <div class="mole1"><img src="mole1.gif" alt="" class="mole2"  onclick="mycount()"></div>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                <div class="mole1"><img src="mole1.gif" alt="" class="mole2"  onclick="mycount()"></div>
+            </td>
+            <td>
+                <div class="mole1"><img src="mole1.gif" alt="" class="mole2"  onclick="mycount()"></div>
+            </td>
+            <td>
+                <div class="mole1"><img src="mole1.gif" alt="" class="mole2"  onclick="mycount()"></div>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <div class="mole1"><img src="mole1.gif" alt="" class="mole2"  onclick="mycount()"></div>
+            </td>
+            <td>
+                <div class="mole1"><img src="mole1.gif" alt="" class="mole2"  onclick="mycount()"></div>
+            </td>
+            <td>
+                <div class="mole1"><img src="mole1.gif" alt="" class="mole2"  onclick="mycount()"></div>
+            </td>
+        </tr>
+    </table>
+
+</div>
+</script></body>
+
+<script>
+    var x = 0;
+    var i=0;
+    var in1;
+    var in2;
+    var z=0;
+    var obj={};
+    var j=29;
+   
+    
+
+    cookieArray=(document.cookie).split("; ");
+  
+   for(let i=0;i<cookieArray.length;i++){
+       key=cookieArray[i].split("=")[0];
+       value=cookieArray[i].split("=")[1];
+       obj[key]=value;
+
+   }
+   if(obj.highscore==undefined){
+        obj.highscore=0;
+       }
+        hscore=obj.highscore   
+ 
+
+
+    function mycount(){
+        z++;
+        document.getElementById("score").innerText=z;
+        if(z>hscore){
+            document.cookie="highscore="+z;
+            document.getElementById('hscore').innerText=z;
+            console.log(document.cookie)
+        }
+         
+       
+    }
+   
+    
+
+
+    function myfun() {
+
+
+      
+        var y = 0;
+        in1=setInterval(myfun1, 1700);
+
+        function myfun1() {
+
+            x = Math.floor(Math.random() * 9);
+
+                document.getElementsByClassName("mole2")[x].style.visibility = "visible";
+        }
+       
+       in2= setInterval(myfun2, 1200);
+
+        function myfun2() {
+         
+            document.getElementsByClassName("mole2")[x].style.visibility = "hidden";
+            i++;
+            document.getElementById("chance").innerText=j;
+            j--;
+
+            if(i==30)
+            {
+           
+            clearInterval(in1);
+            clearInterval(in2);
+          
+            }
+
+        }
+
+    }
+    document.getElementById('hscore').innerText=hscore;
+  
+
+
+
+</script>
+
+</html>
