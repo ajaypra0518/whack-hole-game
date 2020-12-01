@@ -17,6 +17,7 @@
             height: 100vh;
             background-position: center;
             background-size: cover;
+           
         }
 
         table {
@@ -25,12 +26,14 @@
             transform: translate(-50%, -50%);
             position: absolute;
             margin-top: 20px;
+           
         }
 
         .mole1 {
            
             margin: 5px;
             border: 1px solid black;
+            border-radius: 10px;
              
         }
 
@@ -53,17 +56,21 @@
             margin-right: 5px;
             min-width: 30px;
             background-color: transparent;
+              border: 1px solid black;
+              border-radius: 10px;
         }
         #score1{
             margin-top: 10px;
             padding: 13px 30px;
             border: 1px solid black;
             margin-right: 5px;
+            border-radius: 10px;
         }
         #hscore1{
             margin-top: 10px;
             padding: 13px 10px;
             border: 1px solid black;
+            border-radius: 10px;
         }
        
     </style>
@@ -76,7 +83,7 @@
         <button onclick="myfun()">START</button>
     </div>
     <div id="score1"> Score:<span id="score"></span></div>
-    <div id="score1"> Chances:<span id="chance"></span></div>
+    <div id="score1" style="padding: 13px 23px; ;"> Chances:<span id="chance"></span></div>
     <div id="hscore1"> Highest Score:<span id="hscore"></span></div>
 </div>
    
@@ -126,8 +133,8 @@
 <script>
     var x = 0;
     var i=0;
-    var in1;
-    var in2;
+    var in1=0;
+    var in2=0;
     var z=0;
     var obj={};
     var j=29;
@@ -169,7 +176,13 @@
 
       
         var y = 0;
+
+        if(in1==0)
+        {
         in1=setInterval(myfun1, 1700);
+        console.log(in1)
+        }
+     
 
         function myfun1() {
 
@@ -177,8 +190,13 @@
 
                 document.getElementsByClassName("mole2")[x].style.visibility = "visible";
         }
+
        
-       in2= setInterval(myfun2, 1200);
+       if(in2==0){
+        in2= setInterval(myfun2, 1200);
+       console.log(in2)
+       }
+
 
         function myfun2() {
          
@@ -191,7 +209,9 @@
             {
            
             clearInterval(in1);
+            in1=0;
             clearInterval(in2);
+            in2=0;
           
             }
 
